@@ -1,0 +1,8 @@
+site_name: "Red Hat Launch Workshop"
+site_description: "Home"
+
+nav:
+  - Home: index.md
+
+plugins:
+  - techdocs-core
