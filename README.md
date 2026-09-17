@@ -56,8 +56,12 @@ imports them and their TechDocs content.
 Follow these steps:
 
 1. Fork the [ocp-dev-days-rdshw-gitops](https://github.com/na-launch-workshop/ocp-dev-days-rdshw-gitops) repository.
-2. In OpenShift GitOps, in the app-of-apps application, update the Repo URL and Target Revision to your fork.
-3. In the Parameters tab, edit and update the `gitops.repoUrl` and `gitops.targetRevision` to your fork.
+2. Log into OpenShift GitOps as admin.  In the app-of-apps application, in the Summary tab, update the Repo URL and Target Revision to your fork and press Save.
+3. In the Manifest tab, edit the `source.helm.valuesObject.gitops.repoUrl` and `source.helm.valuesObject.gitops.targetRevision` to your fork and press Save.
+
+### Updating Dev Spaces RBAC
+
+Tenant users in Dev Spaces are granted the `tenant-user` ClusterRole. Depending on workshop content and other operators that are installed, the role RBAC may need to be updated, which can be done in the [clusterrole-tenant.yaml](https://github.com/na-launch-workshop/ocp-dev-days-rdshw-gitops/blob/main/cluster/tenant-prereqs/templates/clusterrole-tenant.yaml) file.
 
 <details>
 <summary>🤫 And finally, for end users in Developer Hub...</summary>
