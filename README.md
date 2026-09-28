@@ -26,9 +26,18 @@ Follow these steps to provision the Launch workshop:
 interface" and update the number of users that will be provisioned.
 2. Once the cluster is provisioned, log into OpenShift GitOps.  In the app-of-apps application, update the Repo URL to
 https://github.com/na-launch-workshop/ocp-dev-days-rdshw-gitops and Target Revision to `main`.
-3. This workshop populates GitLab with additional entities in Developer Hub, and can be kicked off by ArgoCD redeploying a job as follows:
+3. This workshop populates GitLab with the `workshop` group and additional entities in Developer Hub.
+
+Delete the initialize-gitlab job and ArgoCD should redeploy it:
 ```
 oc delete job initialize-gitlab -n gitlab
+```
+
+If needed, sync the gitlab application in ArgoCD.  Once the job completes, run the following:
+```
+oc wait --for=condition=complete job/initialize-gitlab -n gitlab --timeout=300s
+oc delete job gitlab-templates -n gitlab
+watch oc get job
 ```
 
 ## Workshop Modules
